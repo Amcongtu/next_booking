@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from './NavBar';
 import style from  '@/styles/Layout_main/Header_Main.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBed, faCar, faPlane, faTaxi } from '@fortawesome/free-solid-svg-icons';
