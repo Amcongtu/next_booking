@@ -7,7 +7,6 @@ function Header() {
     return (
         <div className={style.header}>
             <div className={style.container}>
-
                 <div className={style.headerList}>
                     <div className={`${style.headerListItem} ${style.active} `}>
                         <FontAwesomeIcon icon={faBed} />
