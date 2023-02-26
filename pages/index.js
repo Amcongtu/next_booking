@@ -1,3 +1,4 @@
+import Layout from "@/components/Layouts/Layout"
 
 
 
@@ -9,3 +10,5 @@ export default function Home() {
   </h1>
   )
 }
+
+Home.getLayout = Layout
