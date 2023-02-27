@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <div className={style.navBar}>
       <div className={style.container}>
-        <span className={style.logo}>Booking app</span>
+        <span className={`${style.logo} text-[30px] font-bold`}>Bookingapp</span>
         <div className={style.navIteams}>
           <button className={style.navButton}>Register</button>
           <button className={style.navButton}>Login</button>

@@ -5,4 +5,10 @@
 
 :root{
     --main-backgroud-color: #333;
+    --main-text-color:gray;
+    --main-button-background-color:#006dbb;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
 }
