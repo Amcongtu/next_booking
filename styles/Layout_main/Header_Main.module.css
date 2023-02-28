@@ -120,6 +120,6 @@
     cursor: pointer;
     background-color: white;
 }
-.optionCounterButton:hover{
+.optionCounterButton:disabled{
     cursor: not-allowed;
 }
