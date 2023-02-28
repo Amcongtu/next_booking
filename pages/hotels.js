@@ -4,7 +4,7 @@ import React from 'react';
 function hotels(props) {
     return (
         <div>
-            
+            sdfsdf
         </div>
     );
 }

@@ -6,7 +6,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import { DateRange } from 'react-date-range';
 import {format} from "date-fns"
-function Header(type) {
+function Header({list}) {
     const [isOpenDate, setIsOpenDate]=useState(false)
     const [isOpenOtions, setIsOpenOtions]=useState(false)
     const [date, setDate]= useState([{
@@ -51,7 +51,7 @@ function Header(type) {
                         <span>Airport taxis</span>
                     </div>
                 </div>
-                {type == "list" &&
+                {list  &&
                     <><h1 className={`${style.headerTitle} text-[40px] font-[500] mt-3`}>A lifetime of discounts?   It's Genius.</h1>
                 <p className={style.headerDesc}>Get rewarded for your travels - unclock instant savings of 10% or more with a free BookingApp account.</p>
                 <button className={`${style.headerBtn}`}>Sign in / Register</button>

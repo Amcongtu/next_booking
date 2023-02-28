@@ -14,7 +14,7 @@ function Layout({children}) {
         <meta name="description" content="Booking app" />
       </Head>
          <NavBar />
-         <Header type="list"/>
+         <Header list = {false}/>
          {children}
          <Footer/>
     </div>
