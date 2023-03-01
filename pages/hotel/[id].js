@@ -110,7 +110,7 @@ export async function getStaticPaths() {
     const paths = products.map(item=>{
         return{
             params: {
-                id: item.title
+                id: item.name
             }
         }
     })
@@ -122,7 +122,7 @@ export async function getStaticPaths() {
   
   // `getStaticPaths` requires using `getStaticProps`
   export async function getStaticProps(ctx) {
-    const product = products.filter(item=>item.id===ctx.params.title)[0]
+    const product = products.filter(item=>item.name===ctx.params.id)[0]
     return {
       // Passed to the page component as props
       props: { product },

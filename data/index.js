@@ -1,4 +1,4 @@
-import {v4 as uuidv4} from 'uuid'
+
 const intros = [
     {
       image: 'https://www.urlaubsguru.de/wp-content/uploads/2015/01/dublin-city-skyline-istock_000079625065_large-2.jpg',
@@ -45,7 +45,7 @@ const intros = [
   ]
   const products =[
     {
-
+        name: 'comfortSuitesAirport',
         image: 'https://images.rosewoodhotels.com/is/image/rwhg/hi-hgv-26330925-rhgmodelbedroom-1',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -54,7 +54,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+        name: 'room2',
         image: 'http://4.bp.blogspot.com/-GrLveYYE4pE/UcLMkDLHuvI/AAAAAAAABew/hwDN3vgRfG0/s1600/6-livingrm-print_558457.jpg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -63,7 +63,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+        name: 'room3',
         image: 'http://www.royhomedesign.com/wp-content/uploads/2017/06/beautiful-home-decor-western-living-room-ideas.jpg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -72,7 +72,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+            name: 'room4',
         image: 'https://miro.medium.com/max/8576/1*p1zBnv11CSx_EII8sB9Uaw.jpeg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -81,7 +81,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+        name: 'room5',
         image: 'https://wyndhamgardenmanama.com/wp-content/uploads/2019/03/room-banner.jpeg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -90,7 +90,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+        name: 'room6',
         image: 'https://gift-of-life.org/wp-content/uploads/2019/08/Bedroom1-Beds.jpg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -99,7 +99,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+        name: 'room7',
         image: 'http://www.crescentcourt.com/wp-content/uploads/2018/03/suitelife.jpg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
@@ -108,7 +108,7 @@ const intros = [
         status: 'Exceptional'
       },
       {
-
+        name: 'room8',
         image: 'https://www.corinthia.com/media/2154/corinthia-kartoum-executive-room.jpg',
         title: 'Comfort Suites Airport',
         location: 'Austin',
