@@ -38,7 +38,7 @@ function Hotel({product}) {
                     <div className='flex flex-col gap-4'>
                         <div className='flex justify-between'>
                             <div className='flex flex-col gap-2'>
-                                <div className='text-[24px] font-bold'>Tower Sheet Aparments</div>
+                                <div className='text-[24px] font-bold'>{product.name}</div>
                                 <div className='flex items-baseline gap-2 text-[12px] text-gray-400'>
                                     <FontAwesomeIcon icon={faLocationDot} />
                                     <span>
