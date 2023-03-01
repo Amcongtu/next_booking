@@ -6,6 +6,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import {format} from 'date-fns'
 import CardHotel from '@/components/components_main/CardHotel';
 import {v4 as uuidv4} from 'uuid'
+import EmailList from '@/components/components_main/EmailList';
 function Hotels(props) {
     const [date,setDate] = useState([{startDate: new Date(),endDate: new Date(),key: 'selection'}])
     const [open,setOpen] = useState(false)
@@ -21,20 +22,21 @@ function Hotels(props) {
         return ()=>window.removeEventListener('mousedown',handleClickOutSide)
     },[])
     const fakeProduct = {
-        image: '',
-        title: '',
-        intro_address: '',
-        tag: '',
-        sub: '',
-        desc_room: '',
-        desc: '',
-        service: '',
+        image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        title: 'Tower Sheet Aparment',
+        intro_address: '400m from center',
+        tag: 'Free airport taxi',
+        sub: 'Studio apartment air conditioning',
+        desc_room: 'description room',
+        desc: 'You can cancel latter',
+        service: 'Free cancellation',
+        
     }
     return (
        <div className='my-4'>
             <div className="root_container">
                 <div className='grid grid-cols-4 gap-2'>
-                    <div className='border border-cyan-500 p-2 rounded-md flex flex-col gap-4'>
+                    <div className='border border-cyan-500 p-2 rounded-md flex flex-col gap-4 h-[500px]'>
                         <div className='font-bold text-[24px]'>Search</div>
                         <div className='flex flex-col gap-2'>
                             <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="searchname">Destination</label>
@@ -83,11 +85,11 @@ function Hotels(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className='p-2 rounded-md bg-cyan-500 text-white hover:bg-cyan-400 hover:text-black active:scale-90 duration-200 text-center uppercase cursor-pointer'>
+                        <div className='p-2 rounded-md bg-cyan-500 text-white hover:bg-cyan-400 hover:text-black active:scale-90 duration-200 text-center uppercase cursor-pointer mt-auto'>
                             search
                         </div>
                     </div>
-                    <div className='col-span-3'>
+                    <div className='col-span-3 flex flex-col gap-4 h-[100vh] overflow-y-auto'>
                         {Array(10).fill().map(item=>{
                             return (
                                 <CardHotel key={uuidv4()} product = {fakeProduct}/>
@@ -96,6 +98,7 @@ function Hotels(props) {
                     </div>
                 </div>
             </div>
+            <EmailList/>
         </div>
     );
 }

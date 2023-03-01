@@ -2,7 +2,7 @@ import React from 'react';
 
 function EmailList(props) {
     return (
-        <div className='bg-[#444] text-white p-10'>
+        <div className='bg-[#444] text-white p-10 my-10'>
             <div className='root_container'>
                 <div className='flex flex-col items-center gap-6'>
                     <div className='text-[24px] font-bold'>Save time, save money!</div>
