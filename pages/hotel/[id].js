@@ -49,7 +49,7 @@ function Hotel(props) {
                                 <div className='text-cyan-600'>Exceilent location - 430m from center</div>
                                 <div className='text-green-600'>Book a stay over $114 at this property and get a free airport taxi</div>
                             </div>
-                            <div className='p-2 rounded-md text-white bg-cyan-500 h-[40px] flex items-center justify-center'>Reserver or Book Now !</div>
+                            <div className='p-2 rounded-md text-white bg-cyan-500 h-[40px] flex items-center justify-center hover:bg-cyan-400 hover:text-black active:scale-90 duration-200 '>Reserver or Book Now!</div>
                         </div>
                         <div className='grid grid-cols-3 gap-2'>
                             {images.map((item,index)=>{
