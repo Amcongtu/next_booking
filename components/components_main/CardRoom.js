@@ -1,8 +1,9 @@
+import Link from 'next/link';
 import React from 'react';
 
 function CardRoom({value}) {
     return (
-        <div className='flex flex-col rounded-md overflow-hidden mt-4 duration-200'>
+        <Link href={`/hotel/${value.title}`} className='flex flex-col rounded-md overflow-hidden mt-4 duration-200'>
             <div className='w-full h-[220px] overflow-hidden'>
                 <img src={value.image} alt={value.image} className=' w-full h-full object-cover hover:scale-110 duration-200' />
             </div>
@@ -13,7 +14,7 @@ function CardRoom({value}) {
                 <div className='w-[25px] h-[25px] bg-cyan-500 text-white flex items-center justify-center text-[14px]'>{value.rate}</div>
                 <div className='text-[14px]'>{value.status}</div>
             </div>
-        </div>
+        </Link>
     );
 }
 

@@ -12,7 +12,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Navigation,Scrollbar,A11y } from 'swiper';
 import EmailList from '@/components/components_main/EmailList';
-function Hotel(props) {
+import {products } from '@/data';
+function Hotel({product}) {
     const [open,setOpen] = useState(false)
     const [indeximg,setIndeximg] = useState(0)
     const handleSetOpen = ()=>{
@@ -105,5 +106,27 @@ function Hotel(props) {
         </div>
     );
 }
+export async function getStaticPaths() {
+    const paths = products.map(item=>{
+        return{
+            params: {
+                id: item.title
+            }
+        }
+    })
+    return {
+      paths,
+      fallback: false, // can also be true or 'blocking'
+    }
+  }
+  
+  // `getStaticPaths` requires using `getStaticProps`
+  export async function getStaticProps(ctx) {
+    const product = products.filter(item=>item.id===ctx.params.title)[0]
+    return {
+      // Passed to the page component as props
+      props: { product },
+    }
+  }
 Hotel.getLayout = List
 export default Hotel;
