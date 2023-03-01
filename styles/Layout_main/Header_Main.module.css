@@ -1,15 +1,19 @@
 .container{
     width: 100%;
-    max-width: 1024px;
-    margin: 20px 0 92px 0px;
+    max-width: 1200px;
+    margin: 20px 0 80px 0px;
 }
-
+.list_header{
+    margin: 20px 0 30px 0px;
+    
+}
 .header{
     background-color: var(--main-backgroud-color);
     color: white;
     display: flex;
     justify-content: center;
     position: relative;
+    z-index: 1;
 }
 
 .headerList{
@@ -57,8 +61,10 @@
     border-radius: 5px;
     position: absolute;
     bottom:-28px;
+    left:50%;
+    transform: translateX(-50%);
     width: 100%;
-    max-width: 1024px;
+    max-width: 1072px;
 }
 
 .headerSearchItem{
@@ -111,6 +117,7 @@
     gap: 12px;
     user-select: none;
 }
+
 
 .optionCounterButton{
     width: 30px;

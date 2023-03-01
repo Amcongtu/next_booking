@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import List from '@/components/Layouts/List';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot} from '@fortawesome/free-solid-svg-icons';
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
 import {v4 as uuidv4} from 'uuid'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';

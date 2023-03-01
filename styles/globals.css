@@ -13,7 +13,7 @@ html{
     user-select: none;
 }
 .root_container{
-    width: 1024px;
+    width: 1200px;
     margin: 0 auto;
 }
 ::-webkit-scrollbar{

@@ -7,6 +7,8 @@ import {format} from 'date-fns'
 import CardHotel from '@/components/components_main/CardHotel';
 import {v4 as uuidv4} from 'uuid'
 import EmailList from '@/components/components_main/EmailList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 function Hotels(props) {
     const [date,setDate] = useState([{startDate: new Date(),endDate: new Date(),key: 'selection'}])
     const [open,setOpen] = useState(false)
@@ -30,7 +32,7 @@ function Hotels(props) {
         desc_room: 'description room',
         desc: 'You can cancel latter',
         service: 'Free cancellation',
-        
+        price: '112'
     }
     return (
        <div className='my-4'>
@@ -44,10 +46,11 @@ function Hotels(props) {
                         </div>
                         <div className='flex flex-col gap-2 relative'>
                             <div>Check in date</div>
-                            <span className={`border cursor-pointer ${open ? 'border-cyan-500':'border-gray-400'} rounded-sm px-2 text-gray-400`}
+                            <span className={`border cursor-pointer ${open ? 'border-cyan-500':'border-gray-400'} rounded-sm px-2 text-gray-400 flex items-center justify-center gap-2`}
                                 onMouseDown={e=>handleSetOpen(e)}
                             >
                                 {format(date[0].startDate,"MM/dd/yyy")} to {format(date[0].endDate,"MM/dd/yyy")}
+                                 <FontAwesomeIcon icon={faCalendar}/>
                             </span>
                             {open && (
                                 <div  className=' absolute top-full left-0 border border-gray-400 rounded-md' onMouseDown={e=>e.stopPropagation()}>
