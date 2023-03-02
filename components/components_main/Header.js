@@ -81,8 +81,8 @@ function Header({list}) {
                     <div className={style.headerSearchItem}>
                         <FontAwesomeIcon onClick={()=>setIsOpenDate(!isOpenDate)} icon={faCalendarDays} className={`${style.headerIcon} cursor-pointer pr-[8px] mr-[-6px]`} />
                        <span  onMouseDown={e=>handleSetOpenDate(e)}  className={`${style.headerSearchText} cursor-pointer select-none`}>{format(date[0].startDate,"MM/dd/yyy")} to {format(date[0].endDate,"MM/dd/yyy")} </span>
-                       {isOpenDate && <DateRange editableDateInputs={true}  onMouseDown={e=>e.stopPropagation()} onChange={item =>setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date} className={`${style.date} z-100`}
-                       />}
+                       {isOpenDate && <div onMouseDown={e=>e.stopPropagation()} className={`${style.date} z-100`}><DateRange editableDateInputs={true}   onChange={item =>setDate([item.selection])} moveRangeOnFirstSelection={false} ranges={date}
+                       /></div>}
                     </div>
                     <div className={style.headerSearchItem}>
                         <FontAwesomeIcon onMouseDown={e=>handleSetOpenOptions(e)} icon={faPerson} className={`${style.headerIcon} cursor-pointer p-[12px] mr-[-10px]`} />
