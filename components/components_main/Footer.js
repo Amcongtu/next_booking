@@ -46,7 +46,7 @@ export class Footer extends Component {
               <span className='hover:text-cyan-500 hover:translate-x-4 duration-200 cursor-pointer'>AirPorts</span>
               <span className='hover:text-cyan-500 hover:translate-x-4 duration-200 cursor-pointer'>Hotels</span>
             </div>  
-            
+            aaaaa
           </div>
         </div>
       </div>
