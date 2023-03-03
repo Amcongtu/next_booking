@@ -42,6 +42,26 @@ const intros = [
       title:'Cabins',
       count: '334'
     },
+    {
+      image: 'https://mainlymiles.com/wp-content/uploads/2020/08/Hilton-Singapore-Pool.jpg',
+      title:'Cabins',
+      count: '334'
+    },
+    {
+      image: 'https://mainlymiles.com/wp-content/uploads/2020/08/Hilton-Singapore-Pool.jpg',
+      title:'Cabins',
+      count: '334'
+    },
+    {
+      image: 'https://mainlymiles.com/wp-content/uploads/2020/08/Hilton-Singapore-Pool.jpg',
+      title:'Cabins',
+      count: '334'
+    },
+    {
+      image: 'https://mainlymiles.com/wp-content/uploads/2020/08/Hilton-Singapore-Pool.jpg',
+      title:'Cabins',
+      count: '334'
+    },
   ]
   const products =[
     {

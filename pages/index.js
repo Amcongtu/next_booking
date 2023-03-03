@@ -5,8 +5,16 @@ import CardIntro from "@/components/components_main/CardIntro"
 import CardRoom from "@/components/components_main/CardRoom"
 import EmailList from "@/components/components_main/EmailList"
 import {typestays,intros, products} from "@/data"
+import { Swiper,SwiperSlide, useSwiper } from "swiper/react"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/scrollbar';
+import { Navigation,Scrollbar,A11y, Autoplay } from 'swiper';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons"
 export default function Home() {
-  
+  const swiper = useSwiper();
+  console.log(swiper)
   return (
     <div className="mt-10">
       <div className="root_container">
@@ -20,12 +28,28 @@ export default function Home() {
           </div>
           <div className="flex flex-col gap-4">
             <div className="font-bold text-[24px]">Browser by property type</div>
-            <div className="grid grid-cols-5 gap-4">
-              {typestays.map(item=>{
-                return (
-                  <CardStay value={item} key={uuidv4()}/>
-                )
-              })}
+            <div className="relative">
+              <Swiper
+                modules={[Navigation , Scrollbar, A11y,Autoplay]}
+                spaceBetween={16}
+                slidesPerView={5}
+                autoplay={{
+                  delay: 2000,
+                  disableOnInteraction: false,
+                }}
+              >
+                {typestays.map(item=>{
+                  return (
+                   <SwiperSlide key={uuidv4()}> <CardStay value={item} /></SwiperSlide>
+                  )
+                })}
+              </Swiper>
+              <div className=" absolute bottom-1/2 shadow-xl left-[-25px] w-[50px] h-[50px] bg-white rounded-full z-10 flex items-center justify-center cursor-pointer hover:bg-gray-200 active:scale-90 duration-200">
+                <FontAwesomeIcon icon={faArrowLeft} onClick={()=>{swiper.slidePrev()}}/>
+              </div>
+              <div className=" absolute bottom-1/2 shadow-xl right-[-25px] w-[50px] h-[50px] bg-white rounded-full z-10 flex items-center justify-center cursor-pointer hover:bg-gray-200 active:scale-90 duration-200" onClick={()=>swiper.slideNext()}>
+               <FontAwesomeIcon icon={faArrowRight}/>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-4">

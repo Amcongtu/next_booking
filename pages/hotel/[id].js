@@ -79,7 +79,7 @@ function Hotel({product}) {
                     </div>
                 </div>
                 {open && (
-                    <div className='fixed top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.4)] flex items-center justify-center' onClick={handleSetOpen}>
+                    <div className='fixed top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.4)] flex items-center justify-center z-10' onClick={handleSetOpen}>
                         <div className='w-[60%]' onClick={e=>e.stopPropagation()}>
                             <Swiper
                             // install Swiper modules
