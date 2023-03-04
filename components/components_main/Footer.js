@@ -74,6 +74,7 @@ export class Footer extends Component {
                 width={600}
                 height={80}
                 className='w-[60%] object-cover self-center'
+                alt='img'
               />
             </div>
           </div>

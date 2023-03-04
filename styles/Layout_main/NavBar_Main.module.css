@@ -1,6 +1,6 @@
 .navBar{
     height: 60px;
-    background-color: var(--main-backgroud-color);
+    background-color: #003B95;
     display: flex;
     justify-content: center;
 }

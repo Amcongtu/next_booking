@@ -64,7 +64,9 @@
     left:50%;
     transform: translateX(-50%);
     width: 100%;
-    max-width: 1072px;
+    max-width: 1100px;
+    z-index: 20;
+    padding-left: 10px;
 }
 
 .headerSearchItem{
