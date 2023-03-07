@@ -5,6 +5,8 @@ import Aos from 'aos';
 import 'aos/dist/aos.css'
 import { useEffect } from 'react';
 config.autoAddCss = false; 
+import { store } from '@/redux';
+import { Provider } from 'react-redux';
 export default function App({ Component, pageProps }) {
   useEffect(() => {
     Aos.init({
@@ -13,10 +15,15 @@ export default function App({ Component, pageProps }) {
   }, [])
   
   if (Component.getLayout){
-  return(<Component.getLayout>
-    <Component {...pageProps} />
-  </Component.getLayout>)}
+    return(
+     <Provider store={store}>
+        <Component.getLayout>
+          <Component {...pageProps} />
+        </Component.getLayout>
+     </Provider>
+    )
+  }
   return (
-    <Component {...pageProps} />
+   <Provider store={store}> <Component {...pageProps} /></Provider>
   )
 }

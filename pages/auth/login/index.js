@@ -1,23 +1,18 @@
+import { getUserResquest, userSelect } from '@/redux/reducers/userSlice';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {v4 as uuidv4} from 'uuid'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFaceBook } from '@fortawesome/fontawesome-svg-core';
-import { faGoogle } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faFaceBook } from '@fortawesome/fontawesome-svg-core';
+// import { faGoogle } from '@fortawesome/free-solid-svg-icons';
 function Login(props) {
-    const controls = [
-        {
-            type: 'text',
-            label: 'Username',
-            placeholder: 'Type your username...',
-            
-        },
-        {
-            type: 'password',
-            label: 'Password',
-            placeholder: 'Type your password...',
-        },
-    ]
+    const dispatch = useDispatch()
+    const user = useSelector(userSelect)
+    const [username,setUsername] = useState('')
+    const [password,setPassword] = useState('')
+    const handleLogin = ()=>{
+    }
     return (
         <div className='fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gradient-to-br from-black to-cyan-500'>
             <div className='grid grid-cols-2 bg-white w-[80%] p-4 gap-4 rounded-lg h-[80%] relative'>
@@ -26,17 +21,19 @@ function Login(props) {
                     <div className='flex flex-col gap-4 items-center justify-center '>
                         <div className='text-[24px] font-bold text-cyan-500 text-center'>Login</div>
                         <form action="#" className=" flex flex-col gap-4 w-[80%] mx-auto  border border-cyan-500 p-4 rounded-md">
-                            {controls.map(item=>{
-                                return (
-                                    <div className="flex flex-col gap-2" key={uuidv4()}>
-                                        <label htmlFor={item.type} className="">
-                                            {item.label}
-                                        </label>
-                                        <input type={item.type} name={item.name} placeholder={item.placeholder} spellCheck={false} className='p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500' />
-                                    </div>
-                                )
-                            })}
-                            <div className='p-2 text-center bg-gradient-to-r from-blue-900 to-cyan-500 text-white rounded-md hover:brightness-150 duration-200 cursor-pointer active:scale-90 select-none'>
+                            <div className="flex flex-col gap-2">
+                                <label htmlFor='username' className="">
+                                    Username
+                                </label>
+                                <input type='text' name='username' placeholder='Type your username...' spellCheck={false} className='p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500' value={username} onChange={e=>setUsername(e.target.value)} />
+                            </div>
+                            <div className="flex flex-col gap-2">
+                                <label htmlFor='password' className="">
+                                    Password
+                                </label>
+                                <input type='password' name='password' placeholder='Type your password...' spellCheck={false} className='p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500' value={password} onChange={e=>setPassword(e.target.value)} />
+                            </div>
+                            <div className='p-2 text-center bg-gradient-to-r from-blue-900 to-cyan-500 text-white rounded-md hover:brightness-150 duration-200 cursor-pointer active:scale-90 select-none' onClick={handleLogin}>
                                 Login
                             </div>
                             <div className='flex items-center gap-2 text-[12px] '>
