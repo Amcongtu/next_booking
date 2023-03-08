@@ -1,5 +1,6 @@
-import { getUserResquest, userSelect } from '@/redux/reducers/userSlice';
+import { getUserFailure, getUserResquest, getUserSuccess, userSelect } from '@/redux/reducers/userSlice';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {v4 as uuidv4} from 'uuid'
@@ -7,11 +8,51 @@ import {v4 as uuidv4} from 'uuid'
 // import { faFaceBook } from '@fortawesome/fontawesome-svg-core';
 // import { faGoogle } from '@fortawesome/free-solid-svg-icons';
 function Login(props) {
+    const router = useRouter()
     const dispatch = useDispatch()
     const user = useSelector(userSelect)
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
-    const handleLogin = ()=>{
+    const [validate,setValidate] = useState({username:false,password:false})
+    const handleLogin = async()=>{
+        if(username !== '' && password !== ''){
+            dispatch(getUserResquest())
+            try {
+                const res = await fetch('/api/auth/login',{
+                    method: 'post',
+                    body: JSON.stringify({username,password})
+                })
+                const data = await res.json()
+                dispatch(getUserSuccess(data))
+                router.push('/')
+            } catch (error) {
+                dispatch(getUserFailure())
+            }
+        }
+    }
+    const handleBlur = type =>{
+        switch (type) {
+            case 'username':
+                username === ''&& setValidate({...validate,username:true})
+                break;
+            case 'password':
+                password === ''&& setValidate({...validate,password:true})
+                break;
+            default:
+                break;
+        }
+    }
+    const handleKeydown = type =>{
+        switch (type) {
+            case 'username':
+                setValidate({...validate,username: false})
+                break;
+            case 'password':
+                setValidate({...validate,password: false})
+                break;
+            default:
+                break;
+        }
     }
     return (
         <div className='fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gradient-to-br from-black to-cyan-500'>
@@ -25,13 +66,15 @@ function Login(props) {
                                 <label htmlFor='username' className="">
                                     Username
                                 </label>
-                                <input type='text' name='username' placeholder='Type your username...' spellCheck={false} className='p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500' value={username} onChange={e=>setUsername(e.target.value)} />
+                                <input type='text' name='username' placeholder='Type your username...' spellCheck={false} className={`p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500 ${validate.username && 'border-red-500'}`} value={username} onChange={e=>setUsername(e.target.value)} onBlur={()=>handleBlur('username')} onKeyDown={()=>handleKeydown('username')}/>
+                                {validate.username &&<span className='text-red-500 text-[12px]'>You must type username!</span>}
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label htmlFor='password' className="">
                                     Password
                                 </label>
-                                <input type='password' name='password' placeholder='Type your password...' spellCheck={false} className='p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500' value={password} onChange={e=>setPassword(e.target.value)} />
+                                <input type='password' name='password' placeholder='Type your password...' spellCheck={false} className={`p-2 border border-gray-300 rounded-sm focus-visible:outline-cyan-500 ${validate.password && 'border-red-500'}`} value={password} onChange={e=>setPassword(e.target.value)} onBlur={()=>handleBlur('password')} onKeyDown={()=>handleKeydown('password')}/>
+                                {validate.password &&<span className='text-red-500 text-[12px]'>You must type password!</span>}
                             </div>
                             <div className='p-2 text-center bg-gradient-to-r from-blue-900 to-cyan-500 text-white rounded-md hover:brightness-150 duration-200 cursor-pointer active:scale-90 select-none' onClick={handleLogin}>
                                 Login
@@ -62,6 +105,15 @@ function Login(props) {
                     </div>
                     <div className='absolute bg-gradient-to-br from-black to-transparent w-full h-full top-0'></div>
                 </div>
+                {user.loading && (
+                    <div className=' absolute w-full h-full top-0 left-0 z-40'>
+                        <div className=' absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-[400px] h-[200px] rounded-md shadow-2xl shadow-black flex items-center justify-center gap-4 flex-col'>
+                            <div className='w-[80px] h-[80px] border-[8px] border-green-600 border-t-transparent animate-spin rounded-full'>
+                            </div>
+                            <span className='text-green-600 font-bold'>Login...</span>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );

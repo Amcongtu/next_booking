@@ -9,7 +9,21 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        loadingpagechange: {
+          'from':{
+            right: '100%'
+          },
+          'to': {
+            right: '0'
+          }
+        }
+      },
+      animation: {
+        loadingpagechange: 'loadingpagechange 3s linear'
+      }
+    },
   },
   plugins: [],
 }

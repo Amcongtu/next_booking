@@ -4,6 +4,8 @@ import style  from '@/styles/Layout_main/Layout.module.css';
 import NavBar from '../components_main/NavBar';
 import Header from '../components_main/Header';
 import Head from 'next/head';
+import Loadingpagechange from '../components_main/Loadingpagechange';
+import Scrolltotop from '../components_main/Scrolltotop';
 function Layout({children}) {
   return (
     <div className={style.container}>
@@ -17,6 +19,8 @@ function Layout({children}) {
          <Header list = {true} />
          {children}
          <Footer/>
+         <Loadingpagechange/>
+         <Scrolltotop/>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
     loading: false,
     user: null,
@@ -29,9 +28,16 @@ const userSlice = createSlice({
                 error: true,
             }
         },
+        getuserLogout: state=>{
+            localStorage.removeItem('root')
+            return {
+                ...state,
+                user: null,
+            }
+        }
     }
 })
 
 export const {getUserFailure,getUserResquest,getUserSuccess} = userSlice.actions
-export const userSelect = state=>state
+export const userSelect = state=>state.persistedReducer.userReducer
 export default userSlice.reducer

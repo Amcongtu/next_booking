@@ -13,9 +13,12 @@ import { Navigation,Scrollbar,A11y, Autoplay } from 'swiper';
 import { useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import Cookies from "js-cookie"
+import { getCookieParser } from "next/dist/server/api-utils"
 export default function Home() {
   const navigationPrevRef = useRef(null)
   const navigationNextRef = useRef(null)
+  console.log(Cookies.get('access_token'))
   return (
     <div className="mt-10">
       <div className="root_container">
