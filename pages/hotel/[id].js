@@ -12,8 +12,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Navigation,Scrollbar,A11y } from 'swiper';
 import EmailList from '@/components/components_main/EmailList';
-import {products } from '@/data';
+import { products } from '@/data';
 function Hotel({product}) {
+    
     const [open,setOpen] = useState(false)
     const [indeximg,setIndeximg] = useState(0)
     const handleSetOpen = ()=>{
@@ -38,11 +39,11 @@ function Hotel({product}) {
                     <div className='flex flex-col gap-4'>
                         <div className='flex justify-between'>
                             <div className='flex flex-col gap-2'>
-                                <div className='text-[24px] font-bold'>{product.name}</div>
+                                <div className='text-[24px] font-bold'>{product?.title}</div>
                                 <div className='flex items-baseline gap-2 text-[12px] text-gray-400'>
                                     <FontAwesomeIcon icon={faLocationDot} />
                                     <span>
-                                        location
+                                        {product.address}
                                     </span>
                                 </div>
                                 <div className='text-cyan-600'>Exceilent location - 430m from center</div>
@@ -107,10 +108,12 @@ function Hotel({product}) {
     );
 }
 export async function getStaticPaths() {
-    const paths = products.map(item=>{
+    const res = await fetch(`${process.env.SERVER}/api/hotels`)
+    const hotels = await res.json()
+    const paths =  hotels?.map(item=>{
         return{
             params: {
-                id: item.name
+                id: item._id
             }
         }
     })
@@ -122,7 +125,8 @@ export async function getStaticPaths() {
   
   // `getStaticPaths` requires using `getStaticProps`
   export async function getStaticProps(ctx) {
-    const product = products.filter(item=>item.name===ctx.params.id)[0]
+    const res = await fetch(`${process.env.SERVER}/api/hotels/${ctx.params.id}`)
+    const product = await res.json()
     return {
       // Passed to the page component as props
       props: { product },

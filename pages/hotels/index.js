@@ -24,36 +24,41 @@ function Hotels(props) {
         return ()=>window.removeEventListener('mousedown',handleClickOutSide)
     },[])
     const fakeProduct = {
-        image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8aG90ZWwlMjByb29tfGVufDB8fDB8fA%3D%3D&w=1000&q=80',
+        image: 'https://empire-s3-production.bobvila.com/pages/538/original/Bedroom.jpg?1310503752',
         title: 'Tower Sheet Aparment',
+        title_address: 'Xuan Huong lake,Da Lat',
         intro_address: '400m from center',
-        tag: 'Free airport taxi',
+        tag: 'Sustainable Tourism Accommodation',
         sub: 'Studio apartment air conditioning',
         desc_room: 'description room',
-        desc: 'You can cancel latter',
+        desc: 'Located in Da Lat, 500 meters from Xuan Huong Lake, Dalat Wind Hotel is a 2-star hotel with a 24-hour front desk, shared lounge, free WiFi and free private parking.',
         service: 'Free cancellation',
-        price: '112'
+        price: '112',
+        starts: 3,
+        evalute: 'Good',
+        evalute_core: '8.9',
+        evalute_count: '266',
     }
     return (
        <div className='my-4'>
             <div className="root_container">
                 <div className='grid grid-cols-4 gap-2'>
-                    <div className='border border-cyan-500 p-2 rounded-md flex flex-col gap-4 h-[500px]'>
+                    <div className=' p-2 rounded-md flex flex-col gap-4 h-fit sticky top-4 bg-[#ffb700]'>
                         <div className='font-bold text-[24px]'>Search</div>
                         <div className='flex flex-col gap-2'>
-                            <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="searchname">Destination</label>
-                            <input type="search" name='searchname' spellCheck={false} className='border border-gray-400 rounded-sm focus-within:border-cyan-500 focus-visible:outline-none px-2' />
+                            <label className='text-[14px]  whitespace-nowrap' htmlFor="searchname">Destination</label>
+                            <input type="search" name='searchname' spellCheck={false} className=' rounded-sm border focus-within:border-black focus-visible:outline-none px-2' />
                         </div>
                         <div className='flex flex-col gap-2 relative'>
                             <div>Check in date</div>
-                            <span className={`border cursor-pointer ${open ? 'border-cyan-500':'border-gray-400'} rounded-sm px-2 text-gray-400 flex items-center justify-center gap-2`}
+                            <span className={`border cursor-pointer ${open && 'border border-black'} rounded-sm px-2  flex items-center justify-center gap-2 bg-white`}
                                 onMouseDown={e=>handleSetOpen(e)}
                             >
                                 {format(date[0].startDate,"MM/dd/yyy")} to {format(date[0].endDate,"MM/dd/yyy")}
                                  <FontAwesomeIcon icon={faCalendar}/>
                             </span>
                             {open && (
-                                <div  className=' absolute top-full left-0 border border-gray-400 rounded-md' onMouseDown={e=>e.stopPropagation()}>
+                                <div  className=' absolute top-full left-0  rounded-md' onMouseDown={e=>e.stopPropagation()}>
                                     <DateRange 
                                         editableDateInputs={true} 
                                         onChange={item =>setDate([item.selection])} 
@@ -67,28 +72,28 @@ function Hotels(props) {
                             <div>Options</div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex items-center justify-between'>
-                                    <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="minprice">Min price (per night)</label>
-                                    <input type="number" className='border border-gray-400 pl-1 w-[80px]' min={1} name='minprice' />
+                                    <label className='text-[14px] whitespace-nowrap' htmlFor="minprice">Min price (per night)</label>
+                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='minprice' />
                                 </div>
                                 <div className='flex items-center justify-between'>
-                                    <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="maxprice">Max price (per night)</label>
-                                    <input type="number" className='border border-gray-400 pl-1 w-[80px]' min={1} name='maxprice' />
+                                    <label className='text-[14px] whitespace-nowrap' htmlFor="maxprice">Max price (per night)</label>
+                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='maxprice' />
                                 </div>
                                 <div className='flex items-center justify-between'>   
-                                    <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="adult">Adult</label>
-                                    <input type="number" className='border border-gray-400 pl-1 w-[80px]' min={1} name='adult' />
+                                    <label className='text-[14px] whitespace-nowrap' htmlFor="adult">Adult</label>
+                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='adult' />
                                 </div>
                                 <div className='flex items-center justify-between'>
-                                    <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="children">Children</label>
-                                    <input type="number" className='border border-gray-400 pl-1 w-[80px]' min={1} name='children' />
+                                    <label className='text-[14px] whitespace-nowrap' htmlFor="children">Children</label>
+                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='children' />
                                 </div>
                                 <div className='flex items-center justify-between'>
-                                    <label className='text-[14px] text-gray-500 whitespace-nowrap' htmlFor="room">Room</label>
-                                    <input type="number" className='border border-gray-400 pl-1 w-[80px]' min={1} name='room' />
+                                    <label className='text-[14px] whitespace-nowrap' htmlFor="room">Room</label>
+                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='room' />
                                 </div>
                             </div>
                         </div>
-                        <div className='p-2 rounded-md bg-cyan-500 text-white hover:bg-cyan-400 hover:text-black active:scale-90 duration-200 text-center uppercase cursor-pointer mt-auto'>
+                        <div className='p-2 rounded-md bg-[#006ce4] text-white hover:bg-cyan-400 hover:text-black active:scale-90 duration-200 text-center uppercase cursor-pointer mt-auto'>
                             search
                         </div>
                     </div>

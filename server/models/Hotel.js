@@ -49,6 +49,12 @@ const HotelSchema = new mongoose.Schema({
         type:Boolean,
         required:false
     },
+    rate: {
+        type: Number,
+        default: 10,
+        min: 0,
+        max: 10,
+    }
 })
 
-export default mongoose.models.Hotel || mongoose.model("Hotel",HotelSchema) 
+export default mongoose.models.Hotel ||  mongoose.model("Hotel",HotelSchema) 

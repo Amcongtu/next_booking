@@ -32,10 +32,9 @@ export const login = async (req,res,next)=>{
             { id:user._id, isAdmin:user.isAdmin},
             process.env.JWT
         );
-
         const {password, isAdmin,...otherDetails} = user._doc;  
         res
-        .setHeader("set-cookie", `access_token=${token}; Path=/; HttpOnly`)
+        .setHeader("set-cookie", `access_token=${token}; Path=/;HttpOnly`)
         .status(200)
         .json({...otherDetails});
     }catch(err){
