@@ -22,7 +22,7 @@ function Login(props) {
         <div className='fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-gradient-to-br from-black to-cyan-500'>
             <div className='grid grid-cols-2 bg-white w-[80%] p-4 gap-4 rounded-lg h-[80%] relative'>
                 <div className='flex flex-col'>
-                    <img src="https://app.digitickets.co.uk/userfiles/eventcats/38031-boston-park-farm-logo-cyan.450x210.png?zc=1" alt="" className='w-[50px] rounded-full h-[50px] object-cover absolute top-2 left-2' />
+                    <Link href="/" ><img src="/images/booking-icon-png-10.ico" alt="" className='w-[50px] rounded-full h-[50px] object-cover absolute top-2 left-2' /></Link>
                     <div className='flex flex-col gap-4 items-center justify-center '>
                         <div className='text-[24px] font-bold text-cyan-500 text-center'>Login</div>
                         <form action="#" className=" flex flex-col gap-4 w-[80%] mx-auto  border border-cyan-500 p-4 rounded-md">
