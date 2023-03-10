@@ -10,32 +10,32 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Navigation,Scrollbar,A11y, Autoplay } from 'swiper';
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons"
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { hotelsselect } from '@/redux/reducers/hotelsSilce';
-import { gethotelsrequest } from '@/redux/reducers/hotelsSilce';
-import { gethotelssuccess } from '@/redux/reducers/hotelsSilce';
-import { gethotelsfailure } from '@/redux/reducers/hotelsSilce';
-export default function Home() {
-  const dispatch = useDispatch()
-  const hotels = useSelector(hotelsselect)
+// import { gethotelsrequest } from '@/redux/reducers/hotelsSilce';
+// import { gethotelssuccess } from '@/redux/reducers/hotelsSilce';
+// import { gethotelsfailure } from '@/redux/reducers/hotelsSilce';
+export default function Home({hotels}) {
+  // const dispatch = useDispatch()
+  // const hotels = useSelector(hotelsselect)
   const navigationPrevRef = useRef(null)
   const navigationNextRef = useRef(null)
-  useEffect(()=>{
-    const gethotels = async()=>{
-      dispatch(gethotelsrequest())
-      try {
-        const res =await fetch('/api/hotels')
-        const data = await res.json()
-        dispatch(gethotelssuccess(data))
-      } catch (error) {
-        dispatch(gethotelsfailure())
-      }
-    }
-    gethotels()
-  },[])
+  // useEffect(()=>{
+  //   const gethotels = async()=>{
+  //     dispatch(gethotelsrequest())
+  //     try {
+  //       const res =await fetch('/api/hotels')
+  //       const data = await res.json()
+  //       dispatch(gethotelssuccess(data))
+  //     } catch (error) {
+  //       dispatch(gethotelsfailure())
+  //     }
+  //   }
+  //   gethotels()
+  // },[])
   return (
     <div className="mt-10">
       <div className="root_container">
@@ -85,8 +85,15 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <div className="text-[24px] font-bold">Homes guets love</div>
             <div className="grid grid-cols-4 gap-4 ">
-               {hotels.loading ? 'Loading...':(
+               {/* {hotels.loading ? 'Loading...':(
                   hotels.hotels?.map((item,index)=>{
+                    return (
+                      index < 8 && <CardRoom key={uuidv4()} value={item} durationItem={`${(index+1)*150}`}/>
+                    )
+                  })
+               )}  */}
+               {!hotels ? 'Loading...':(
+                  hotels?.map((item,index)=>{
                     return (
                       index < 8 && <CardRoom key={uuidv4()} value={item} durationItem={`${(index+1)*150}`}/>
                     )
@@ -102,16 +109,16 @@ export default function Home() {
     
   )
 }
-// export const getServerSideProps = async()=>{
-//   const getHotels = async ()=>{
-//     const res = await fetch(`${process.env.SERVER}/api/hotels`)
-//     return res.json()
-//   }
-//   const hotels = await getHotels()
-//   return {
-//     props: {
-//       hotels,
-//     }
-//   }
-// }
+export const getServerSideProps = async()=>{
+  const getHotels = async ()=>{
+    const res = await fetch(`${process.env.SERVER}/api/hotels`)
+    return res.json()
+  }
+  const hotels = await getHotels()
+  return {
+    props: {
+      hotels,
+    }
+  }
+}
 Home.getLayout = Layout

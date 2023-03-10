@@ -12,20 +12,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Navigation,Scrollbar,A11y } from 'swiper';
 import EmailList from '@/components/components_main/EmailList';
-import { useRouter } from 'next/router';
-function Hotel() {
-    const router = useRouter()
+// import { useRouter } from 'next/router';
+function Hotel({product}) {
+    // const router = useRouter()
     const [open,setOpen] = useState(false)
     const [indeximg,setIndeximg] = useState(0)
-    const [product,setproduct] = useState(null)
-    useEffect(()=>{
-        const getproduct = async ()=>{
-            const res = await fetch(`/api/hotels/${router.query.id}`)
-            const data = await res.json()
-            setproduct(data)
-        }
-        getproduct()
-    },[router.query.id])
+    // const [product,setproduct] = useState(null)
+    // useEffect(()=>{
+    //     const getproduct = async ()=>{
+    //         const res = await fetch(`/api/hotels/${router.query.id}`)
+    //         const data = await res.json()
+    //         setproduct(data)
+    //     }
+    //     getproduct()
+    // },[router.query.id])
     const handleSetOpen = ()=>{
         setOpen(!open)
     }
@@ -117,17 +117,17 @@ function Hotel() {
     );
 }
 
-// export const getServerSideProps = async (context)=>{
-//     const getHotel = async ()=>{
-//         const res = await fetch (`${process.env.SERVER}/api/hotels/${context.params.id}`)
-//         return res.json()
-//     }
-//     const product = await getHotel()
-//     return {
-//         props: {
-//             product,
-//         }
-//     }
-// }
+export const getServerSideProps = async (context)=>{
+    const getHotel = async ()=>{
+        const res = await fetch (`${process.env.SERVER}/api/hotels/${context.params.id}`)
+        return res.json()
+    }
+    const product = await getHotel()
+    return {
+        props: {
+            product,
+        }
+    }
+}
 Hotel.getLayout = List
 export default Hotel;

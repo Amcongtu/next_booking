@@ -10,7 +10,7 @@ function CardRoom({value,durationItem}){
             <div className='text-gray-500'>{value.city}</div>
             <div className='font-bold'>Starting from ${value.cheapestPrice}</div>
             <div className='flex items-center gap-4'>
-                <div className='w-[32px] h-[25px] bg-cyan-500 text-white flex items-center justify-center text-[14px] px-2'>{value.rate.toFixed(1)}</div>
+                <div className='w-fit h-[25px] bg-cyan-500 text-white flex items-center justify-center text-[14px] px-2'>{value.rate.toFixed(1)}</div>
                 <div className='text-[14px]'>{value.status}</div>
             </div>
         </Link>
