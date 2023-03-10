@@ -28,6 +28,7 @@ function Header({ list }) {
   }, []);
   const [isOpenDate, setIsOpenDate] = useState(false);
   const [isOpenOtions, setIsOpenOtions] = useState(false);
+  const [place,setplace] = useState('')
   const handleSetOpenDate = (e) => {
     e.stopPropagation();
     setIsOpenDate(!isOpenDate);
@@ -59,7 +60,17 @@ function Header({ list }) {
     });
   };
   const handleSearch = ()=>{
-    
+    router.push({
+      pathname: '/hotels/',
+      query: {
+        place: place,
+        startdate: format(date[0].startDate, "MM/dd/yyy"),
+        enddate: format(date[0].endDate, "MM/dd/yyy"),
+        adult: options.adult,
+        children: options.children,
+        room: options.room,
+      }
+    })
   }
   return (
     <div className="bg-[#003B95]">
@@ -102,7 +113,7 @@ function Header({ list }) {
                  <div className="text-[20px]">
                    The vacation is easy to place but it is difficult to leave
                  </div>
-                 <div className="p-2 rounded-md bg-cyan-500 w-[200px] text-center hover:bg-cyan-200 hover:text-black duration-200 active:scale-90">
+                 <div className="p-2 rounded-md bg-[#003B95] cursor-pointer w-[200px] text-center hover:bg-cyan-200 hover:text-black duration-200 active:scale-90">
                    Find a cool place
                  </div>
                </div>
@@ -120,6 +131,8 @@ function Header({ list }) {
                    type="text"
                    placeholder="Where are you going?"
                    className={`${style.headerSearchInput}  text-gray-400`}
+                   value ={place}
+                   onChange={e=>setplace(e.target.value)}
                  />
                </div>
                <div className={style.headerSearchItem}>

@@ -10,17 +10,20 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Navigation,Scrollbar,A11y, Autoplay } from 'swiper';
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons"
-import {useSelector } from 'react-redux';
-import { hotelsselect } from '@/redux/reducers/hotelsSilce';
+import {useDispatch } from 'react-redux';
+// import { hotelsselect, gethotelssuccess } from '@/redux/reducers/hotelsSilce';
 import Link from "next/link"
 // import { gethotelsrequest } from '@/redux/reducers/hotelsSilce';
-// import { gethotelssuccess } from '@/redux/reducers/hotelsSilce';
+import { gethotelssuccess } from '@/redux/reducers/hotelsSilce';
 // import { gethotelsfailure } from '@/redux/reducers/hotelsSilce';
 export default function Home({hotels}) {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(gethotelssuccess(hotels))
+  },[])
   // const hotels = useSelector(hotelsselect)
   const navigationPrevRef = useRef(null)
   const navigationNextRef = useRef(null)

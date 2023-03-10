@@ -9,8 +9,28 @@ import {v4 as uuidv4} from 'uuid'
 import EmailList from '@/components/components_main/EmailList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar } from '@fortawesome/free-solid-svg-icons';
-function Hotels(props) {
-    const [date,setDate] = useState([{startDate: new Date(),endDate: new Date(),key: 'selection'}])
+import { useRouter } from 'next/router';
+function Hotels({hotels}) {
+    const router = useRouter()
+    function addDays(date, days) {
+        date.setDate(date.getDate() + days);
+        return date;
+      }
+    const [date,setDate] = useState([{startDate: new Date(),endDate: addDays(new Date(),1),key: 'selection'}])
+    const [place,setplace] = useState('')
+    const [options, setOptions] = useState({
+        adult: 1,
+        children: 0,
+        room: 1,
+    });
+    const handleOption = (name, operation) => {
+        setOptions((prev) => {
+          return {
+            ...prev,
+            [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+          };
+        });
+      };
     const [open,setOpen] = useState(false)
     const handleSetOpen = e=>{
         e.stopPropagation()
@@ -23,22 +43,22 @@ function Hotels(props) {
         window.addEventListener('mousedown',handleClickOutSide)
         return ()=>window.removeEventListener('mousedown',handleClickOutSide)
     },[])
-    const fakeProduct = {
-        image: 'https://empire-s3-production.bobvila.com/pages/538/original/Bedroom.jpg?1310503752',
-        title: 'Tower Sheet Aparment',
-        title_address: 'Xuan Huong lake,Da Lat',
-        intro_address: '400m from center',
-        tag: 'Sustainable Tourism Accommodation',
-        sub: 'Studio apartment air conditioning',
-        desc_room: 'description room',
-        desc: 'Located in Da Lat, 500 meters from Xuan Huong Lake, Dalat Wind Hotel is a 2-star hotel with a 24-hour front desk, shared lounge, free WiFi and free private parking.',
-        service: 'Free cancellation',
-        price: '112',
-        starts: 3,
-        evalute: 'Good',
-        evalute_core: '8.9',
-        evalute_count: '266',
-    }
+    // const fakeProduct = {
+    //     image: 'https://empire-s3-production.bobvila.com/pages/538/original/Bedroom.jpg?1310503752',
+    //     title: 'Tower Sheet Aparment',
+    //     title_address: 'Xuan Huong lake,Da Lat',
+    //     intro_address: '400m from center',
+    //     tag: 'Sustainable Tourism Accommodation',
+    //     sub: 'Studio apartment air conditioning',
+    //     desc_room: 'description room',
+    //     desc: 'Located in Da Lat, 500 meters from Xuan Huong Lake, Dalat Wind Hotel is a 2-star hotel with a 24-hour front desk, shared lounge, free WiFi and free private parking.',
+    //     service: 'Free cancellation',
+    //     price: '112',
+    //     starts: 3,
+    //     evalute: 'Good',
+    //     evalute_core: '8.9',
+    //     evalute_count: '266',
+    // }
     return (
        <div className='mt-4'>
             <div className="root_container">
@@ -47,7 +67,7 @@ function Hotels(props) {
                         <div className='font-bold text-[24px]'>Search</div>
                         <div className='flex flex-col gap-2'>
                             <label className='text-[14px]  whitespace-nowrap' htmlFor="searchname">Destination</label>
-                            <input type="search" name='searchname' spellCheck={false} className=' rounded-sm border focus-within:border-black focus-visible:outline-none px-2' />
+                            <input type="search" name='searchname' spellCheck={false} className=' rounded-sm border focus-within:border-black focus-visible:outline-none px-2'placeholder='Type your place...' value={place} onChange={e=>setplace(e.target.value)} />
                         </div>
                         <div className='flex flex-col gap-2 relative'>
                             <div>Check in date</div>
@@ -98,11 +118,13 @@ function Hotels(props) {
                         </div>
                     </div>
                     <div className='col-span-3 flex flex-col gap-4 h-[100vh] overflow-y-auto'>
-                        {Array(10).fill().map(item=>{
-                            return (
-                                <CardHotel key={uuidv4()} product = {fakeProduct}/>
-                            )
-                        })}
+                        {!hotels ?'Loading...':(
+                            hotels?.map(item=>{
+                                return (
+                                    <CardHotel key={uuidv4()} product = {item}/>
+                                )
+                            })
+                        )}
                     </div>
                 </div>
             </div>
@@ -110,5 +132,17 @@ function Hotels(props) {
         </div>
     );
 }
+export const getServerSideProps = async()=>{
+    const getHotels = async ()=>{
+      const res = await fetch(`${process.env.SERVER}/api/hotels`)
+      return res.json()
+    }
+    const hotels = await getHotels()
+    return {
+      props: {
+        hotels,
+      }
+    }
+  }
 Hotels.getLayout = List
 export default Hotels;
