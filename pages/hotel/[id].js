@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import List from '@/components/Layouts/List';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot} from '@fortawesome/free-solid-svg-icons';
@@ -12,11 +12,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/scrollbar';
 import { Navigation,Scrollbar,A11y } from 'swiper';
 import EmailList from '@/components/components_main/EmailList';
-import { products } from '@/data';
-function Hotel({product}) {
-    
+import { useRouter } from 'next/router';
+function Hotel() {
+    const router = useRouter()
     const [open,setOpen] = useState(false)
     const [indeximg,setIndeximg] = useState(0)
+    const [product,setproduct] = useState(null)
+    useEffect(()=>{
+        const getproduct = async ()=>{
+            const res = await fetch(`/api/hotels/${router.query.id}`)
+            const data = await res.json()
+            setproduct(data)
+        }
+        getproduct()
+    },[router.query.id])
     const handleSetOpen = ()=>{
         setOpen(!open)
     }
@@ -43,7 +52,7 @@ function Hotel({product}) {
                                 <div className='flex items-baseline gap-2 text-[12px] text-gray-400'>
                                     <FontAwesomeIcon icon={faLocationDot} />
                                     <span>
-                                        {product.address}
+                                        {product?.address}
                                     </span>
                                 </div>
                                 <div className='text-cyan-600'>Exceilent location - 430m from center</div>
@@ -54,7 +63,7 @@ function Hotel({product}) {
                         <div className='grid grid-cols-3 gap-2'>
                             {images.map((item,index)=>{
                                 return (
-                                    <img src={item} alt={item} key={uuidv4()} className='w-full h-full object-cover' onClick={()=>handleImage(index)} />
+                                    <img src={item} alt={item} key={uuidv4()} className='w-full h-full object-cover cursor-pointer hover:border-[2px] hover:border-cyan-600' onClick={()=>handleImage(index)} />
                                 )
                             })}
                         </div>
@@ -107,30 +116,18 @@ function Hotel({product}) {
         </div>
     );
 }
-export async function getStaticPaths() {
-    const res = await fetch(`${process.env.SERVER}/api/hotels`)
-    const hotels = await res.json()
-    const paths =  hotels?.map(item=>{
-        return{
-            params: {
-                id: item._id
-            }
-        }
-    })
-    return {
-      paths,
-      fallback: false, // can also be true or 'blocking'
-    }
-  }
-  
-  // `getStaticPaths` requires using `getStaticProps`
-  export async function getStaticProps(ctx) {
-    const res = await fetch(`${process.env.SERVER}/api/hotels/${ctx.params.id}`)
-    const product = await res.json()
-    return {
-      // Passed to the page component as props
-      props: { product },
-    }
-  }
+
+// export const getServerSideProps = async (context)=>{
+//     const getHotel = async ()=>{
+//         const res = await fetch (`${process.env.SERVER}/api/hotels/${context.params.id}`)
+//         return res.json()
+//     }
+//     const product = await getHotel()
+//     return {
+//         props: {
+//             product,
+//         }
+//     }
+// }
 Hotel.getLayout = List
 export default Hotel;

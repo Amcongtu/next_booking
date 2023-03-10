@@ -15,7 +15,9 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
+import { useRouter } from 'next/router';
 function Header({ list }) {
+  const router = useRouter()
   useEffect(() => {
     const handleClickOutSide = () => {
       setIsOpenDate(false);
@@ -56,6 +58,9 @@ function Header({ list }) {
       };
     });
   };
+  const handleSearch = ()=>{
+    
+  }
   return (
     <div className="bg-[#003B95]">
       <div className="flex flex-col gap-4">
@@ -226,7 +231,7 @@ function Header({ list }) {
                  )}
                </div>
                <div className={style.headerSearchItem}>
-                 <button className={style.headerBtn}>Search</button>
+                 <button className={style.headerBtn} onClick={handleSearch}>Search</button>
                </div>
              </div>
            </div>

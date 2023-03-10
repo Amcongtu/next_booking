@@ -61,7 +61,7 @@ function Login(props) {
                     <Link href="/" ><img src="/images/booking-icon-png-10.ico" alt="" className='w-[50px] rounded-full h-[50px] object-cover absolute top-2 left-2' /></Link>
                     <div className='flex flex-col gap-4 items-center justify-center '>
                         <div className='text-[24px] font-bold text-cyan-500 text-center'>Login</div>
-                        <form action="#" className=" flex flex-col gap-4 w-[80%] mx-auto  border border-cyan-500 p-4 rounded-md">
+                        <form action="#" method='post' className=" flex flex-col gap-4 w-[80%] mx-auto  border border-cyan-500 p-4 rounded-md">
                             <div className="flex flex-col gap-2">
                                 <label htmlFor='username' className="">
                                     Username

@@ -3,7 +3,6 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import Aos from 'aos';
 import 'aos/dist/aos.css'
-import Link from 'next/link'
 
 import { useEffect } from 'react';
 config.autoAddCss = false; 

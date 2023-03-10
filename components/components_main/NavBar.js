@@ -19,7 +19,7 @@ function NavBar() {
     <div className='bg-[#003B95] text-white py-4 w-full'>
       <div className='root_container'>
         <div className='flex items-center justify-between w-full'>
-          <span className={`${style.logo} text-[30px] font-bold text-white`}>Bookingapp</span>
+          <Link href={'/'} className={`${style.logo} text-[30px] font-bold text-white`}>Bookingapp</Link>
           <div className='flex items-center gap-2'>
             <div className='p-2 rounded-md hover:bg-[rgba(255,255,255,0.2)] cursor-pointer flex items-center justify-center uppercase'>vnd</div>
             <div className='p-2 rounded-md hover:bg-[rgba(255,255,255,0.2)] cursor-pointer flex items-center justify-center'><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/1200px-Flag_of_Vietnam.svg.png" alt="" className='w-[20px] h-[20px] rounded-full object-cover ' /></div>
