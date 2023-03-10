@@ -23,6 +23,9 @@ function Hotels({hotels}) {
         children: 0,
         room: 1,
     });
+    useEffect(()=>{
+        
+    })
     const handleOption = (name, operation) => {
         setOptions((prev) => {
           return {

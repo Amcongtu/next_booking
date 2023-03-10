@@ -50,7 +50,7 @@ const HotelSchema = new mongoose.Schema({
         required:false
     },
     rate: {
-        type: mongoose.Decimal128,
+        type: Number,
         default: 10.0,
         min: 0,
         max: 10,
