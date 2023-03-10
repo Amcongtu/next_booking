@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowLeft,faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import {useSelector } from 'react-redux';
 import { hotelsselect } from '@/redux/reducers/hotelsSilce';
+import Link from "next/link"
 // import { gethotelsrequest } from '@/redux/reducers/hotelsSilce';
 // import { gethotelssuccess } from '@/redux/reducers/hotelsSilce';
 // import { gethotelsfailure } from '@/redux/reducers/hotelsSilce';
@@ -100,7 +101,7 @@ export default function Home({hotels}) {
                   })
                )} 
             </div>
-            <div className="w-[200px] py-2 bg-yellow-500 rounded-md self-center uppercase text-center cursor-pointer mt-4 hover:bg-yellow-600 hover:text-white active:scale-90 duration-200 z-10">Show more</div>
+            <Link href={"/hotels"}className="w-[200px] py-2 bg-yellow-500 rounded-md self-center uppercase text-center cursor-pointer mt-4 hover:bg-yellow-600 hover:text-white active:scale-90 duration-200 z-10">Show more</Link>
           </div>
         </div>
       </div>

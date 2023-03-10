@@ -40,7 +40,7 @@ function Hotels(props) {
         evalute_count: '266',
     }
     return (
-       <div className='my-4'>
+       <div className='mt-4'>
             <div className="root_container">
                 <div className='grid grid-cols-4 gap-2'>
                     <div className=' p-2 rounded-md flex flex-col gap-4 h-fit sticky top-4 bg-[#ffb700]'>
