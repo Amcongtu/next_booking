@@ -16,8 +16,8 @@ function NavBar() {
     try {
       setTimeout(() => {
         dispatch(getuserLogout())
+        router.push('/')
       }, 1500);
-      router.push('/')
     } catch (error) {
       dispatch(getUserFailure())
     }

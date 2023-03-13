@@ -6,7 +6,11 @@ import Header from '../components_main/Header';
 import Head from 'next/head';
 import Loadingpagechange from '../components_main/Loadingpagechange';
 import Scrolltotop from '../components_main/Scrolltotop';
+import Lazyloading from '@/components/components_main/Lazyloading';
+import { useSelector } from 'react-redux';
+import { userSelect } from '@/redux/reducers/userSlice';
 function Layout({children}) {
+  const user = useSelector(userSelect)
   return (
     <div className={style.container}>
        <Head>
@@ -20,6 +24,7 @@ function Layout({children}) {
          <Footer/>
          <Loadingpagechange/>
          <Scrolltotop/>
+         {user.loading && <Lazyloading heading = {'Logout...'}/>}
     </div>
   )
 }
