@@ -70,11 +70,11 @@ function Hotels({hotels}) {
                         <div className='font-bold text-[24px]'>Search</div>
                         <div className='flex flex-col gap-2'>
                             <label className='text-[14px]  whitespace-nowrap' htmlFor="searchname">Destination</label>
-                            <input type="search" name='searchname' spellCheck={false} className=' rounded-sm border focus-within:border-black focus-visible:outline-none px-2'placeholder='Type your place...' value={place} onChange={e=>setplace(e.target.value)} />
+                            <input type="search" name='searchname' spellCheck={false} className=' rounded-sm border focus-within:border-black focus-visible:outline-none p-2'placeholder='Type your place...' value={place} onChange={e=>setplace(e.target.value)} />
                         </div>
                         <div className='flex flex-col gap-2 relative'>
                             <div>Check in date</div>
-                            <span className={`border cursor-pointer ${open && 'border border-black'} rounded-sm px-2  flex items-center justify-center gap-2 bg-white`}
+                            <span className={`border cursor-pointer ${open && 'border border-black'} rounded-sm p-2  flex items-center justify-center gap-2 bg-white`}
                                 onMouseDown={e=>handleSetOpen(e)}
                             >
                                 {format(date[0].startDate,"MM/dd/yyy")} to {format(date[0].endDate,"MM/dd/yyy")}

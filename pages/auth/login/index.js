@@ -1,7 +1,7 @@
 import { getUserFailure, getUserResquest, getUserSuccess, userSelect } from '@/redux/reducers/userSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {v4 as uuidv4} from 'uuid'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,10 +11,14 @@ function Login(props) {
     const router = useRouter()
     const dispatch = useDispatch()
     const user = useSelector(userSelect)
+    useEffect(() => {
+      user.user && router.push('/')
+    }, [])
     const [username,setUsername] = useState('')
     const [password,setPassword] = useState('')
     const [validate,setValidate] = useState({username:false,password:false})
     const handleLogin = async()=>{
+        console.log(typeof({username,password}))
         if(username !== '' && password !== ''){
             dispatch(getUserResquest())
             try {
@@ -22,6 +26,7 @@ function Login(props) {
                     method: 'post',
                     body: JSON.stringify({username,password})
                 })
+
                 const data = await res.json()
                 dispatch(getUserSuccess(data))
                 router.push('/')

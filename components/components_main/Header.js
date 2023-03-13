@@ -63,12 +63,14 @@ function Header({ list }) {
     router.push({
       pathname: '/hotels/',
       query: {
-        place: place,
-        startdate: format(date[0].startDate, "MM/dd/yyy"),
-        enddate: format(date[0].endDate, "MM/dd/yyy"),
-        adult: options.adult,
-        children: options.children,
-        room: options.room,
+        place,
+        // startdate: format(date[0].startDate, "MM/dd/yyy"),
+        // enddate: format(date[0].endDate, "MM/dd/yyy"),
+        date: JSON.stringify(date),
+        // adult: options.adult,
+        // children: options.children,
+        // room: options.room,
+        options: JSON.stringify(options)
       }
     })
   }

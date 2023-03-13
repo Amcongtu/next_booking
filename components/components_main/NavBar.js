@@ -3,7 +3,7 @@ import  style  from '@/styles/Layout_main/NavBar_Main.module.css';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
-import { getuserLogout, userSelect } from '@/redux/reducers/userSlice';
+import { getuserLogout, userSelect, getUserFailure, getUserResquest } from '@/redux/reducers/userSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 function NavBar() {
@@ -12,8 +12,15 @@ function NavBar() {
   const [userhover,setuserhover] = useState(false)
   const dispatch = useDispatch()
   const handlelogout = ()=>{
-    dispatch(getuserLogout())
-    router.push('/')
+    dispatch(getUserResquest())
+    try {
+      setTimeout(() => {
+        dispatch(getuserLogout())
+      }, 1500);
+      router.push('/')
+    } catch (error) {
+      dispatch(getUserFailure())
+    }
   }
   return (
     <div className='bg-[#003B95] text-white py-4 w-full'>

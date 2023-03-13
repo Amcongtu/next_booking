@@ -26,12 +26,14 @@ const userSlice = createSlice({
             return {
                 ...state,
                 error: true,
+                loading: false,
             }
         },
         getuserLogout: state=>{
             localStorage.removeItem('root')
             return {
                 ...state,
+                loading: false,
                 user: null,
             }
         }
