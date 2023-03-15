@@ -18,7 +18,6 @@ function Login(props) {
     const [password,setPassword] = useState('')
     const [validate,setValidate] = useState({username:false,password:false})
     const handleLogin = async()=>{
-        console.log(typeof({username,password}))
         if(username !== '' && password !== ''){
             dispatch(getUserResquest())
             try {

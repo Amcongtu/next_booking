@@ -5,7 +5,6 @@ import { getRooms, updateRoom,deleteRoom,createRoom } from './../../../server/co
 
 connectDB();
 const handler = nc();
-handler.post(verifyAdmin,createRoom);
 handler.get(getRooms);
 handler.put(verifyAdmin,updateRoom);
 handler.delete(verifyAdmin,deleteRoom);

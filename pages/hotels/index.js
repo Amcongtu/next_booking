@@ -34,6 +34,8 @@ function Hotels({hotels}) {
           };
         });
       };
+
+    
     const [open,setOpen] = useState(false)
     const handleSetOpen = e=>{
         e.stopPropagation()
@@ -69,12 +71,12 @@ function Hotels({hotels}) {
                     <div className=' p-2 rounded-md flex flex-col gap-4 h-fit sticky top-4 bg-[#ffb700]'>
                         <div className='font-bold text-[24px]'>Search</div>
                         <div className='flex flex-col gap-2'>
-                            <label className='text-[14px]  whitespace-nowrap' htmlFor="searchname">Destination</label>
+                            <label className='text-[15px]  whitespace-nowrap' htmlFor="searchname">Destination</label>
                             <input type="search" name='searchname' spellCheck={false} className=' rounded-sm border focus-within:border-black focus-visible:outline-none p-2'placeholder='Type your place...' value={place} onChange={e=>setplace(e.target.value)} />
                         </div>
                         <div className='flex flex-col gap-2 relative'>
-                            <div>Check in date</div>
-                            <span className={`border cursor-pointer ${open && 'border border-black'} rounded-sm p-2  flex items-center justify-center gap-2 bg-white`}
+                            <div className='text-[15px] mb-[-2px]' >Check in date</div>
+                            <span className={`border font-[400]  cursor-pointer ${open && 'border border-black'} rounded-sm p-2  flex text-gray-600 items-center justify-center gap-2 bg-white`}
                                 onMouseDown={e=>handleSetOpen(e)}
                             >
                                 {format(date[0].startDate,"MM/dd/yyy")} to {format(date[0].endDate,"MM/dd/yyy")}
@@ -91,28 +93,28 @@ function Hotels({hotels}) {
                                 </div>
                             )}
                         </div>
-                        <div className='flex flex-col gap-2'>
-                            <div>Options</div>
+                        <div className='flex flex-col gap-2 mt-2'>
+                            <div className='font-bold'>Options</div>
                             <div className='flex flex-col gap-2'>
                                 <div className='flex items-center justify-between'>
                                     <label className='text-[14px] whitespace-nowrap' htmlFor="minprice">Min price (per night)</label>
-                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='minprice' />
+                                    <input type="number" className=' pl-1 w-[80px] rounded-[2px]' min={1} name='minprice' />
                                 </div>
                                 <div className='flex items-center justify-between'>
                                     <label className='text-[14px] whitespace-nowrap' htmlFor="maxprice">Max price (per night)</label>
-                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='maxprice' />
+                                    <input type="number" className=' pl-1 w-[80px] rounded-[2px]' min={1} name='maxprice' />
                                 </div>
                                 <div className='flex items-center justify-between'>   
                                     <label className='text-[14px] whitespace-nowrap' htmlFor="adult">Adult</label>
-                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='adult' />
+                                    <input type="number" className=' pl-1 w-[80px] rounded-[2px] ' min={1} name='adult' />
                                 </div>
                                 <div className='flex items-center justify-between'>
                                     <label className='text-[14px] whitespace-nowrap' htmlFor="children">Children</label>
-                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='children' />
+                                    <input type="number" className=' pl-1 w-[80px] rounded-[2px]' min={0} name='children' />
                                 </div>
                                 <div className='flex items-center justify-between'>
                                     <label className='text-[14px] whitespace-nowrap' htmlFor="room">Room</label>
-                                    <input type="number" className=' pl-1 w-[80px]' min={1} name='room' />
+                                    <input type="number" className=' pl-1 w-[80px] rounded-[2px]' min={1} name='room' />
                                 </div>
                             </div>
                         </div>
