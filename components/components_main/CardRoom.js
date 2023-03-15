@@ -6,7 +6,7 @@ function CardRoom({value,durationItem}){
             <div className='w-full h-[220px] overflow-hidden'>
                 <img src={value.photos[0]} alt={value.title} className=' w-full h-full object-cover hover:scale-110 duration-200' />
             </div>
-            <div className='font-bold text-[20px] '>{value.title}</div>
+            <div className='font-bold text-[20px] '>{value.name}</div>
             <div className='text-gray-500'>{value.city}</div>
             <div className='font-bold'>Starting from ${value.cheapestPrice}</div>
             <div className='flex items-center gap-4'>
