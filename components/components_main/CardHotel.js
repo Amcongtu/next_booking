@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaintBrush,faPlus,faStar,faThumbsUp, } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 function CardHotel({product}) {
+
     const getevalute = number=>{
-        console.log(number)
         // return number > 5 ? 'Medium' : number > 8? 'Good' : number > 9 ? 'Very Good' : 'Bad'
         return number>=9?"Very good":number>=8?"Good":number>=5?"Medium":"Bad"
     }
