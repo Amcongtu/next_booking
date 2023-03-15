@@ -22,7 +22,7 @@ export const updateRoom = async (req,res,next)=>{
     try{
         const updateRoom = await Room.findByIdAndUpdate(req.query.id,{$set:req.body},
             {new: true})
-        res.status(200).json(updateHotel);
+        res.status(200).json(updateRoom);
     }catch(err){
         next(err);
     }

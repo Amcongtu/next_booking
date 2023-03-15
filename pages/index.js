@@ -18,9 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Link from "next/link"
 // import { gethotelsrequest } from '@/redux/reducers/hotelsSilce';
 import { gethotelssuccess } from '@/redux/reducers/hotelsSilce';
-import Lazyloading from "@/components/components_main/Lazyloading"
 // import { gethotelsfailure } from '@/redux/reducers/hotelsSilce';
-export default function Home({hotels}) {
+export default function Home({hotels,rooms}) {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(gethotelssuccess(hotels))
@@ -73,7 +72,7 @@ export default function Home({hotels}) {
                   swiper.params.navigation.nextEl = navigationNextRef.current;
                 }}
               >
-                {typestays.map(item=>{
+                {rooms.map(item=>{
                   return (
                    <SwiperSlide key={uuidv4()}> <CardStay value={item} /></SwiperSlide>
                   )
@@ -119,10 +118,16 @@ export const getServerSideProps = async()=>{
     const res = await fetch(`${process.env.SERVER}/api/hotels`)
     return res.json()
   }
+  const getrooms = async()=>{
+    const res = await fetch(`${process.env.SERVER}/api/rooms`)
+    return res.json()
+  }
   const hotels = await getHotels()
+  const rooms = await getrooms()
   return {
     props: {
       hotels,
+      rooms,
     }
   }
 }
